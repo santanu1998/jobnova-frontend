@@ -26,7 +26,7 @@ During local development, Vite proxies `/api` and `/auth` requests to this URL, 
 browser CORS blocks. Set `VITE_API_BASE_URL=http://localhost:5000` to use a local gateway.
 For a deployed frontend, set `CORS_ALLOWED_ORIGINS` on the gateway to include the frontend's
 origin (for example, `https://jobnova.example.com`). The production API URL must use HTTPS;
- browsers block requests from the HTTPS Vercel site to an HTTP API.
+browsers block requests from the HTTPS Vercel site to an HTTP API.
 
 ## Deploy to Vercel
 
