@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const configuredApiBaseUrl =
-  import.meta.env.VITE_API_BASE_URL || "http://jobnova-santanu.duckdns.org:5000";
+const configuredApiBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim() || "";
 
 // In development, route through Vite so browser CORS policy does not block API calls.
 export const API_BASE_URL = import.meta.env.DEV ? "" : configuredApiBaseUrl;
@@ -36,7 +35,9 @@ export function getErrorMessage(err, fallback = "Something went wrong") {
   if (data?.message) return data.message;
   if (data?.error) return data.error;
   if (err?.code === "ERR_NETWORK")
-    return `Cannot reach the JobNova server at ${configuredApiBaseUrl}. Check the API Gateway and its CORS settings.`;
+    return configuredApiBaseUrl
+      ? `Cannot reach the JobNova server at ${configuredApiBaseUrl}. Check the API Gateway and its CORS settings.`
+      : "Cannot reach the JobNova API through this site. Check that the API Gateway is running.";
   return fallback;
 }
 
