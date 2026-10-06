@@ -1,0 +1,82 @@
+import { createSlice } from "@reduxjs/toolkit";
+import {
+  activateUser,
+  deleteUser,
+  fetchAllUsers,
+  suspendUser,
+} from "./adminThunk";
+
+import { replaceInList } from "../utils/replaceInList";
+
+const initialState = {
+  users: [],
+  isLoading: false,
+  isActionLoading: false,
+  error: null,
+  actionError: null,
+};
+
+const adminUserSlice = createSlice({
+  name: "adminUser",
+  initialState,
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAllUsers.pending, (state) => {
+        ((state.isLoading = true), (state.error = null));
+      })
+      .addCase(fetchAllUsers.fulfilled, (state, { payload }) => {
+        ((state.isLoading = false), (state.users = payload));
+      })
+      .addCase(fetchAllUsers.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      });
+
+    // ── suspendUser ──────────────────────────────────────────────────────────
+    builder
+      .addCase(suspendUser.pending, (state) => {
+        state.isActionLoading = true;
+        state.actionError = null;
+      })
+      .addCase(suspendUser.fulfilled, (state, { payload }) => {
+        state.isActionLoading = false;
+        replaceInList(state.users, payload);
+      })
+      .addCase(suspendUser.rejected, (state, { payload }) => {
+        state.isActionLoading = false;
+        state.actionError = payload;
+      });
+
+    builder
+      .addCase(activateUser.pending, (state) => {
+        state.isActionLoading = true;
+        state.actionError = null;
+      })
+      .addCase(activateUser.fulfilled, (state, { payload }) => {
+        state.isActionLoading = false;
+        replaceInList(state.users, payload);
+      })
+      .addCase(activateUser.rejected, (state, { payload }) => {
+        state.isActionLoading = false;
+        state.actionError = payload;
+      });
+
+    builder
+      .addCase(deleteUser.pending, (state) => {
+        state.isActionLoading = true;
+        state.actionError = null;
+      })
+      .addCase(deleteUser.fulfilled, (state, { payload }) => {
+        state.isActionLoading = false;
+        // User-Services hard-deletes the user, so drop it from the list
+        state.users = state.users.filter((u) => u.id !== payload?.id);
+      })
+      .addCase(deleteUser.rejected, (state, { payload }) => {
+        state.isActionLoading = false;
+        state.actionError = payload;
+      });
+  },
+});
+
+
+export default adminUserSlice.reducer

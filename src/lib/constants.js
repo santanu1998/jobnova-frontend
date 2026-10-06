@@ -1,0 +1,127 @@
+// Values mirror the JobNova backend enums in common-lib (com.globalco.domain).
+// Keep these in sync with the backend whenever an enum changes.
+
+export const APP_NAME = "JobNova";
+
+export const ROLES = {
+  ADMIN: "ROLE_ADMIN",
+  JOB_SEEKER: "ROLE_JOBSEEKER",
+  EMPLOYER: "ROLE_EMPLOYER",
+};
+
+export const JOB_TYPES = [
+  "FULL_TIME",
+  "PART_TIME",
+  "CONTRACT",
+  "INTERNSHIP",
+  "FREELANCE",
+  "REMOTE",
+];
+
+export const WORK_MODES = ["ONSITE", "REMOTE", "HYBRID"];
+
+export const EXPERIENCE_LEVELS = [
+  "ENTRY_LEVEL",
+  "JUNIOR",
+  "MID_LEVEL",
+  "SENIOR",
+  "LEAD",
+  "MANAGER",
+  "DIRECTOR",
+  "EXECUTIVE",
+];
+
+export const JOB_STATUSES = ["DRAFT", "OPEN", "CLOSED", "EXPIRED", "FILLED", "ARCHIVED"];
+
+export const SKILL_CATEGORIES = [
+  "PROGRAMMING_LANGUAGES",
+  "FRAMEWORKS",
+  "DATABASES",
+  "CLOUD_PLATFORMS",
+  "DEVOPS",
+  "MOBILE_DEVELOPMENT",
+  "FRONTEND_DEVELOPMENT",
+  "BACKEND_DEVELOPMENT",
+  "DATA_SCIENCE",
+  "MACHINE_LEARNING",
+  "ARTIFICIAL_INTELLIGENCE",
+  "CYBER_SECURITY",
+  "NETWORKING",
+  "UI_UX_DESIGN",
+  "PROJECT_MANAGEMENT",
+  "BUSINESS_ANALYSIS",
+  "QUALITY_ASSURANCE",
+  "DESIGN",
+  "SOFT_SKILLS",
+  "TOOLS",
+  "LANGUAGE",
+  "OTHER",
+];
+
+export const PROFICIENCY_LEVELS = ["BEGINNER", "ELEMENTARY", "INTERMEDIATE", "ADVANCED", "EXPERT"];
+
+export const LANGUAGE_PROFICIENCIES = ["BASIC", "CONVERSATIONAL", "PROFESSIONAL", "FLUENT", "NATIVE"];
+
+export const RESUME_TEMPLATES = ["CLASSIC", "MODERN", "CREATIVE", "MINIMAL", "PROFESSIONAL"];
+
+export const RESUME_VISIBILITIES = ["PUBLIC", "PRIVATE", "LINK_ONLY"];
+
+export const APPLICATION_STATUSES = [
+  "PENDING",
+  "REVIEWING",
+  "SHORTLISTED",
+  "INTERVIEW_SCHEDULED",
+  "REJECTED",
+  "HIRED",
+  "WITHDRAWN",
+];
+
+// "MID_LEVEL" -> "Mid Level"
+export const formatEnum = (value) =>
+  value
+    ? String(value)
+        .toLowerCase()
+        .split("_")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ")
+    : "";
+
+export const COMPANY_SIZES = ["MICRO", "SMALL", "MEDIUM", "LARGE", "ENTERPRISE"];
+
+export const COMPANY_TYPES = [
+  "STARTUP",
+  "PRIVATE",
+  "PUBLIC_LISTED",
+  "GOVERNMENT",
+  "NON_PROFIT",
+  "EDUCATIONAL",
+  "SELF_EMPLOYED",
+];
+
+export const COMPANY_STATUSES = ["PENDING_VERIFICATION", "ACTIVE", "SUSPENDED", "REJECTED"];
+
+export const INDUSTRY_TYPES = [
+  "TECHNOLOGY",
+  "FINANCE_BANKING",
+  "HEALTHCARE",
+  "EDUCATION",
+  "MANUFACTURING",
+  "RETAIL_ECOMMERCE",
+  "HOSPITALITY_TOURISM",
+  "REAL_ESTATE",
+  "MEDIA_ENTERTAINMENT",
+  "TRANSPORTATION_LOGISTICS",
+  "ENERGY_UTILITIES",
+  "AGRICULTURE",
+  "CONSULTING",
+  "LEGAL",
+  "TELECOMMUNICATIONS",
+  "AUTOMOTIVE",
+  "PHARMACEUTICAL",
+  "CONSTRUCTION",
+  "HUMAN_RESOURCES",
+  "MARKETING_ADVERTISING",
+  "OTHER",
+];
+
+export const SOCIAL_PLATFORMS = ["LINKEDIN", "TWITTER", "FACEBOOK", "GITHUB", "INSTAGRAM", "YOUTUBE", "WEBSITE"];
